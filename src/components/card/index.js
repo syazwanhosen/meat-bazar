@@ -1,17 +1,21 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-
-export default function Card({ name, photo, buttonLabel, itemList, href }) {
+import { getToken } from "@/utils";
+export default function Card({ name, photo, buttonLabel, itemList, href, chatLink }) {
+    const isLogged = getToken()
     return (
         <div className="bg-white p-4 rounded-lg shadow-lg text-black">
-            <Image src={photo} width={200} height={150} className="rounded-t-lg" alt={name} />
+            <img src={photo} className="rounded-t-lg" alt={name} />
             <h4 className="text-lg font-bold mt-2">{name}</h4>
             {
                 itemList && itemList.map(({ id, name }) => <ul key={id}>
                     <li>{name}</li>
                 </ul>)
             }
-            <button className="bg-orange-500 text-white px-4 py-2 mt-2 rounded"><Link href={href}>{buttonLabel}</Link></button>
+            {buttonLabel && <button className="bg-orange-500 text-white px-4 py-2 mt-2 rounded mr-2"><Link href={href}>{buttonLabel}</Link></button>}
+            {isLogged && chatLink && <button className="bg-orange-500 text-white px-4 py-2 mt-2 rounded"><Link href={chatLink}>Chat Seller</Link></button>}
         </div>
     )
 }   
