@@ -18,7 +18,7 @@ router.get("/sellers", async (req, res) => {
             const seller = await User.findById(req.params.id);
             if (!seller) return res.status(404).json({ message: "Supplier not found" });
 
-            seller.approved = true;
+            seller.approved = "approved";
             await seller.save();
 
             res.json({ message: "Supplier approved successfully", seller });
@@ -26,6 +26,35 @@ router.get("/sellers", async (req, res) => {
             res.status(500).json({ message: "Error approving seller", error });
         }
     });
+    // ✅ Admin: Reject Supplier
+    router.put("/reject-seller/:id", auth, async (req, res) => {
+        try {
+            const seller = await User.findById(req.params.id);
+            if (!seller) return res.status(404).json({ message: "Supplier not found" });
+
+            seller.approved = "rejected";
+            await seller.save();
+
+            res.json({ message: "Supplier rejected successfully", seller });
+        } catch (error) {
+            res.status(500).json({ message: "Error rejectingg seller", error });
+        }
+    });
+
+    // ✅ Delete seller
+    router.delete("/delete-seller/:id", auth, async (req, res) => {
+        try {
+            const seller = await User.findById(req.params.id);
+            if (!seller) return res.status(404).json({ message: "Seller not found" });
+
+            await seller.deleteOne();
+
+            res.status(200).json({ message: "Seller deleted" });
+        } catch (err) {
+            res.status(500).json({ message: "Server error" });
+        }
+    });
+
 });
 
 // ✅ Supplier: Edit Profile

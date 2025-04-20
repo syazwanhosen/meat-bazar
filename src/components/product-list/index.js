@@ -27,7 +27,9 @@ export default function SellerProductList({ sellerId }) {
                             { id: 3, name: `Weight: ${product.weight} kg` },
                             { id: 4, name: `Price per kg: RM ${product.price}` },
                             { id: 5, name: `Total: RM ${product.weight * product.price}` },
-                            { id: 6, name: `Halal: ${product.halalCertified ? "Yes" : "No"}` }
+                            { id: 6, name: `Halal: ${product.halalCertified ? "Yes" : "No"}` },
+                            { id: 7, name: `Delivery Time: ${product.deliveryTime ? new Date(product.deliveryTime).toLocaleDateString() : "N/A"}` },
+                            { id: 8, name: `Date Added: ${product.createdAt ? new Date(product.createdAt).toLocaleDateString() : "N/A"}` }
                         ]
                     }
                 });

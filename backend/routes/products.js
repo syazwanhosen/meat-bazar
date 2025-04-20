@@ -13,7 +13,7 @@ const upload = multer({ storage });
 
 // Create a Product (Seller Only)
 router.post("/", auth, upload.single("image"), async (req, res) => {
-    const { name, description, price, category, weight, seller, halalCertified, halalCertificate } = req.body;
+    const { name, description, price, category, weight, seller, halalCertified, halalCertificate, deliveryTime } = req.body;
 
     try {
         const newProduct = new Product({
@@ -25,6 +25,7 @@ router.post("/", auth, upload.single("image"), async (req, res) => {
             seller,
             halalCertified,
             halalCertificate,
+            deliveryTime,
             image: req.file ? `/uploads/products/${req.file.filename}` : "",
         });
 

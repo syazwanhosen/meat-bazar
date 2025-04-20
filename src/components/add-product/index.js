@@ -12,6 +12,7 @@ export default function ProductForm({ productId }) {
         category: "",
         weight: "",
         halalCertified: false,
+        deliveryTime: null
     });
     const [image, setImage] = useState(null);
     const [message, setMessage] = useState("");
@@ -31,6 +32,7 @@ export default function ProductForm({ productId }) {
                     category: data.category || "",
                     weight: data.weight || "",
                     halalCertified: data.halalCertified || false,
+                    deliveryTime: data.deliveryTime || false,
                 });
             } catch (err) {
                 setMessage("Failed to load product for editing.");
@@ -90,6 +92,16 @@ export default function ProductForm({ productId }) {
                     <input type="checkbox" checked={product.halalCertified} onChange={(e) => setProduct({ ...product, halalCertified: e.target.checked })} />
                     <span>Halal Certified</span>
                 </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Delivery Time
+                </label>
+                <input
+                    type="date"
+                    value={product.deliveryTime ? new Date(product.deliveryTime).toISOString().split("T")[0] : ""}
+                    onChange={(e) => setProduct({ ...product, deliveryTime: e.target.value })}
+                    className="p-2 border rounded mb-4 w-96"
+                />
+
 
                 <input type="file" onChange={(e) => setImage(e.target.files[0])} className="p-2 border rounded mb-4 w-96" />
 

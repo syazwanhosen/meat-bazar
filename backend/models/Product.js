@@ -10,6 +10,8 @@ const ProductSchema = new mongoose.Schema({
     seller: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     halalCertified: { type: Boolean, default: false },
     halalCertificate: { type: String },
+    deliveryTime: { type: Date },
+    createdAt: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model("Product", ProductSchema);

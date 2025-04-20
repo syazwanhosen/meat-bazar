@@ -17,7 +17,7 @@ const userRoutes = require("./routes/user");
 // Initialize Express app
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000", methods: ["GET", "POST", "PUT"] })); // Ensure frontend can access WebSocket
+app.use(cors({ origin: "http://localhost:3000", methods: ["GET", "POST", "PUT", "DELETE"] })); // Ensure frontend can access WebSocket
 app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static("uploads")); // ✅ Serve static files from uploads/
 
@@ -28,7 +28,7 @@ const server = http.createServer(app); // ✅ Use this for Socket.io
 const io = new Server(server, {
     cors: {
         origin: "http://localhost:3000", // Ensure Next.js frontend can connect
-        methods: ["GET", "POST", "PUT"],
+        methods: ["GET", "POST", "PUT", "DELETE"],
     },
 });
 

@@ -27,8 +27,8 @@ export default function NavigationBar() {
                     <li><Link href="/promotion" className="hover:underline">Promotion</Link></li>
                     <li><Link href="/news" className="hover:underline">News</Link></li>
                     <li><Link href="/halal-certificate" className="hover:underline">Halal Certificate</Link></li>
-                    {isLoggedIn && isSupplier.role === "seller" && isSupplier.is_approved && <li><Link href="/edit-profile" className="hover:underline">Edit Profile</Link></li>}
-                    {isLoggedIn && isSupplier.role === "seller" && isSupplier.is_approved && <li><Link href="/add-product" className="hover:underline">Add Product</Link></li>}
+                    {isLoggedIn && isSupplier.role === "seller" && (isSupplier.is_approved === "approved") && <li><Link href="/edit-profile" className="hover:underline">Edit Profile</Link></li>}
+                    {isLoggedIn && isSupplier.role === "seller" && (isSupplier.is_approved === "approved") && <li><Link href="/add-product" className="hover:underline">Add Product</Link></li>}
                 </ul>
             </nav>
             <div className="flex space-x-4">
