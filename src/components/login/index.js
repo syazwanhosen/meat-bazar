@@ -24,7 +24,7 @@ export default function Login() {
             } else if (res.user.role === 'admin') {
                 router.push("/admin-dashboard"); // ✅ Redirect after successful login
             } else if (res.user.role === 'seller') {
-                if (res.user.is_approved === "approved") router.push("/"); // ✅ Redirect after successful login
+                if (res.user.is_approved === "approved") router.push("/seller-dashboard"); // ✅ Redirect after successful login
                 else if (res.user.is_approved === "rejected") router.push("/application-rejected"); // ✅ Redirect after successful login
                 else router.push("/waiting-for-approval"); // ✅ Redirect after successful login
             } else {
