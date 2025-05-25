@@ -22,7 +22,7 @@ export default function NavigationBar() {
             <h1 className="text-2xl font-bold">MeatBazar</h1>
             <nav>
                 <ul className="flex space-x-6">
-                    <li><Link href="/" className="hover:underline">Home</Link></li>
+                    <li><Link href={`${isLoggedIn && isSupplier.role === "seller" && (isSupplier.is_approved === "approved") ? '/seller-dashboard' : '/'}`} className="hover:underline">Home</Link></li>
                     <li><Link href="/seller-list" className="hover:underline">Seller List</Link></li>
                     <li><Link href="/promotion" className="hover:underline">Promotion</Link></li>
                     <li><Link href="/news" className="hover:underline">News</Link></li>
