@@ -13,6 +13,7 @@ const OrderSchema = new mongoose.Schema({
     orderStatus: { type: String, enum: ["processing", "shipped", "delivered", "cancelled"], default: "processing" },
     orderNotes: { type: String }, // optional
     createdAt: { type: Date, default: Date.now },
+    orderTime: { type: Date, default: Date.now },  // <--- add this
 });
 
 module.exports = mongoose.model("Order", OrderSchema);

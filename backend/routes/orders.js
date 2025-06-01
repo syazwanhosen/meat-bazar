@@ -7,6 +7,11 @@ const auth = require("../middleware/auth")
 // Create Order from Cart
 router.post("/", async (req, res) => {
     try {
+        // Add orderTime with current time if not provided
+        if (!req.body.orderTime) {
+            req.body.orderTime = new Date();
+        }
+
         const newOrder = new Order(req.body);
         await newOrder.save();
         res.status(201).json(newOrder);
@@ -14,6 +19,7 @@ router.post("/", async (req, res) => {
         res.status(500).json({ message: "Error creating order", error: err });
     }
 });
+
 
 // Get Orders for a User
 router.get("/:userId", auth, async (req, res) => {
