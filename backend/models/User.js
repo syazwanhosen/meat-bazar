@@ -6,6 +6,9 @@ const UserSchema = new mongoose.Schema({
     password: { type: String, required: true },
     role: { type: String, enum: ["buyer", "seller", "admin"], default: "buyer" },
     approved: { type: String, default: null }, // ✅ Admin approval required for suppliers
+    profilePicture: { type: String },
+    address: { type: String },
+
 });
 
 // ✅ Auto-approve buyers upon registration
