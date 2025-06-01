@@ -29,6 +29,7 @@ export default function NavigationBar() {
                     <li><Link href="/halal-certificate" className="hover:underline">Halal Certificate</Link></li>
                     {isLoggedIn && isSupplier.role === "seller" && (isSupplier.is_approved === "approved") && <li><Link href="/edit-profile" className="hover:underline">Edit Profile</Link></li>}
                     {isLoggedIn && isSupplier.role === "seller" && (isSupplier.is_approved === "approved") && <li><Link href="/add-product" className="hover:underline">Add Product</Link></li>}
+                    {isLoggedIn && isSupplier.role === "seller" && (isSupplier.is_approved === "approved") && <li><Link href="/add-halal-certificate" className="hover:underline">Add Halal Certificate</Link></li>}
                 </ul>
             </nav>
             <div className="flex space-x-4">

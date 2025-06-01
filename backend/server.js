@@ -13,6 +13,7 @@ const cartRoutes = require("./routes/cart");
 const orderRoutes = require("./routes/orders");
 const chatRoutes = require("./routes/chat");
 const userRoutes = require("./routes/user");
+const halalCertificateRoutes = require("./routes/halalCertificate");
 
 // Initialize Express app
 const app = express();
@@ -108,3 +109,4 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/user", userRoutes); // ✅ Include user routes
+app.use("/api/halal-certificates", halalCertificateRoutes);

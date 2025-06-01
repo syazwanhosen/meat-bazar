@@ -88,10 +88,7 @@ export default function ProductForm({ productId }) {
                 <input type="text" placeholder="Category" value={product.category} onChange={(e) => setProduct({ ...product, category: e.target.value })} className="p-2 border rounded mb-4 w-96" />
                 <input type="number" placeholder="Weight (kg)" value={product.weight} onChange={(e) => setProduct({ ...product, weight: e.target.value })} className="p-2 border rounded mb-4 w-96" />
 
-                <label className="flex items-center space-x-2 mb-4">
-                    <input type="checkbox" checked={product.halalCertified} onChange={(e) => setProduct({ ...product, halalCertified: e.target.checked })} />
-                    <span>Halal Certified</span>
-                </label>
+
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                     Delivery Time
                 </label>

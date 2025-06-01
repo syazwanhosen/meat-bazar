@@ -14,7 +14,7 @@ export default function Card({ name, photo, buttonLabel, itemList, href, chatLin
                     <li>{name}</li>
                 </ul>)
             }
-            {buttonLabel && <button className="bg-orange-500 text-white px-4 py-2 mt-2 rounded mr-2"><Link href={href}>{buttonLabel}</Link></button>}
+            {buttonLabel && href && <button className="bg-orange-500 text-white px-4 py-2 mt-2 rounded mr-2"><Link href={href}>{buttonLabel}</Link></button>}
             {isLogged && chatLink && <button className="bg-orange-500 text-white px-4 py-2 mt-2 rounded"><Link href={chatLink}>Chat Seller</Link></button>}
         </div>
     )

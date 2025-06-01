@@ -19,8 +19,8 @@ export default function SellerProductList({ sellerId }) {
                         id: product._id,
                         name: product.name,
                         photo: `http://localhost:5000${product.image}`,
-                        buttonLabel: storedUser.role === "buyer" ? "Add to cart" : storedUser.id === product.seller._id ? "Edit Product" : null,
-                        href: storedUser.role === "buyer" ? `/checkout//${product._id}` : `/edit-product/${product._id}`,
+                        buttonLabel: !storedUser?.role ? "" : storedUser.role === "buyer" ? "Add to cart" : storedUser.id === product.seller._id ? "Edit Product" : null,
+                        href: !storedUser?.role ? "" : storedUser.role === "buyer" ? `/checkout//${product._id}` : `/edit-product/${product._id}`,
                         itemList: [
                             { id: 1, name: `Height: ${product.height || "N/A"}` },
                             { id: 2, name: `Length: ${product.length || "N/A"}` },
