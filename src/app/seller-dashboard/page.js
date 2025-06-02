@@ -78,6 +78,17 @@ export default function SellerDashboard() {
                             Add New Product
                         </button>
                     </div>
+
+                    <div className="bg-white p-6 rounded-lg shadow">
+                        <h2 className="text-xl font-semibold mb-2">Order History</h2>
+                        <p>View all buyer orders for your products.</p>
+                        <button
+                            onClick={() => router.push(`/order-history`)}
+                            className="mt-4 bg-green-600 text-white py-2 px-4 rounded"
+                        >
+                            View Order History
+                        </button>
+                    </div>
                 </div>
 
                 {/* Product Table */}

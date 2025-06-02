@@ -1,6 +1,6 @@
 const express = require("express");
 const Order = require("../models/Order");
-const Cart = require("../models/Cart");
+const Product = require("../models/Product");
 const router = express.Router();
 const auth = require("../middleware/auth")
 
@@ -38,6 +38,39 @@ router.put("/:orderId", auth, async (req, res) => {
 router.delete("/:orderId", auth, async (req, res) => {
     await Order.findByIdAndDelete(req.params.orderId);
     res.json({ message: "Order deleted" });
+});
+
+
+router.get("/seller/:sellerId", auth, async (req, res) => {
+    try {
+        const sellerId = req.params.sellerId;
+
+        // 1. Get all products by seller
+        const products = await Product.find({ seller: sellerId });
+        const productIds = products.map((p) => p._id);
+
+        // 2. Get orders where productId is in seller's products
+        const orders = await Order.find({ productId: { $in: productIds } })
+            .populate("buyer", "name")       // get buyer's name
+            .populate("productId", "name")     // get product name
+            .sort({ createdAt: -1 });
+
+        const formattedOrders = orders.map((order) => ({
+            productName: order.productId?.name || "Unknown",
+            buyerName: order.buyer?.name || "Unknown",
+            quantity: order.quantity,
+            total: order.total,
+            address: order.address,
+            phone: order.phone,
+            orderNotes: order.orderNotes,
+            createdAt: order.createdAt,
+        }));
+
+        res.json(formattedOrders);
+    } catch (err) {
+        console.error("Error fetching seller's product orders:", err);
+        res.status(500).json({ error: "Failed to fetch order history." });
+    }
 });
 
 
