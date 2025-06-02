@@ -36,6 +36,21 @@ router.post("/", auth, upload.single("image"), async (req, res) => {
     }
 });
 
+// Get Products by Seller ID
+router.get("/sellerbyId", async (req, res) => {
+    try {
+        const query = {};
+        if (req.query.supplierId) {
+            query.seller = req.query.supplierId;
+        }
+
+        const products = await Product.find(query).populate("seller", "name email");
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching seller's products", error });
+    }
+});
+
 // Get All Products
 router.get("/", async (req, res) => {
     try {

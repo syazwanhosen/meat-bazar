@@ -20,7 +20,7 @@ export default function SellerDashboard() {
 
     const fetchProducts = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/api/products?seller_id=${storedUser.id}`, {
+            const res = await axios.get(`http://localhost:5000/api/products/sellerbyId?supplierId=${storedUser?.id}`, {
                 headers: { Authorization: `Bearer ${getToken()}` },
             });
             setProducts(res.data);
